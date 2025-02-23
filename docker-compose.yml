@@ -1,0 +1,19 @@
+
+services:
+  # Сервис Dispatcher
+  servertgbot:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: servertgbot
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    environment:
+      BOT_NAME: ${BOT_NAME}
+      BOT_TOKEN: ${BOT_TOKEN}
+      BOT_URL: ${BOT_URL}
+    volumes:
+      - ./.env:/app/.env  # Копируем .env в /app
+
+
