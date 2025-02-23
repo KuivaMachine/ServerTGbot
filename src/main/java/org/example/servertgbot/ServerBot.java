@@ -1,22 +1,22 @@
 package org.example.servertgbot;
 
 import org.example.configuration.TelegramBotConfig;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
-import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
+@Component
 public class ServerBot extends TelegramWebhookBot {
-    private final TelegramBotConfig config;
-    private final BotRestController restController;
-    public ServerBot(TelegramBotConfig config, BotRestController restController) {
+    BotRestController restController;
+    TelegramBotConfig config;
+
+    public ServerBot(BotRestController restController,TelegramBotConfig config) {
         super(config.getToken());
-        this.config = config;
         this.restController = restController;
+        this.config = config;
         try {
             //ДЛЯ LONGPOLLING
             //TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
