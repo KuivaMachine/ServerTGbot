@@ -18,10 +18,7 @@ public class ServerBot extends TelegramWebhookBot {
         this.restController = restController;
         this.config = config;
         try {
-            //ДЛЯ LONGPOLLING
-            //TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
-            //api.registerBot(this);
-            //ДЛЯ WEBHOOK
+
             SetWebhook setWebhook = SetWebhook.builder().url(config.getUrl()).build();
             this.setWebhook(setWebhook);
 
