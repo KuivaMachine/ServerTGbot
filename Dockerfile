@@ -14,10 +14,10 @@ RUN ./gradlew clean bootJar
 FROM openjdk:21-jdk-slim
 
 # Устанавливаем рабочую директорию
-WORKDIR /app
+WORKDIR /servertgbot
 
 # Копируем JAR-файл из этапа сборки
-COPY --from=build servertgbot/build/libs/ServerTGbot-0.0.1-SNAPSHOT.jar servertgbot.jar
+COPY build/libs/ServerTGbot-0.0.1-SNAPSHOT.jar servertgbot.jar
 
 # Команда для запуска приложения
 ENTRYPOINT ["java", "-jar", "servertgbot.jar"]

@@ -21,7 +21,7 @@ services:
       BOT_URL: ${BOT_URL}
       APP_PORT: ${APP_PORT}
     volumes:
-      - ./.env:/app/.env  # Копируем .env в /app
+      - ./.env:/servertgbot/.env  # Копируем .env в /app
 
 
   traefik:
