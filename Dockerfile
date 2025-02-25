@@ -17,7 +17,7 @@ FROM openjdk:21-jdk-slim
 WORKDIR /app
 
 # Копируем JAR-файл из этапа сборки
-COPY build/libs/ServerTGbot-0.0.1-SNAPSHOT.jar servertgbot.jar
+COPY --from=build servertgbot/build/libs/ServerTGbot-0.0.1-SNAPSHOT.jar servertgbot.jar
 
 # Команда для запуска приложения
 ENTRYPOINT ["java", "-jar", "servertgbot.jar"]

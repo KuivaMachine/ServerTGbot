@@ -23,6 +23,7 @@ services:
     volumes:
       - ./.env:/app/.env  # Копируем .env в /app
 
+
   traefik:
     container_name: traefik
     image: traefik:v2.9
