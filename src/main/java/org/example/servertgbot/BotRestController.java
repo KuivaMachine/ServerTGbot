@@ -25,7 +25,7 @@ public class BotRestController {
     }*/
 
     @PostMapping("/")
-    public String post(@RequestBody Update update) {
+    public String post(@RequestBody String update) {
         return "Метод POST!";
     }
     @GetMapping("/")
