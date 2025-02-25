@@ -24,8 +24,12 @@ public class BotRestController {
         return message;
     }*/
 
-    @PostMapping("/callback")
-    public String hello(@RequestBody Update update) {
-        return "Домен musthavecasekpi.aleksz5h.beget.tech работает на порту 9000!";
+    @PostMapping("/")
+    public String post(@RequestBody Update update) {
+        return "Метод POST!";
+    }
+    @GetMapping("/")
+    public String get() {
+        return "Метод GET!";
     }
 }
