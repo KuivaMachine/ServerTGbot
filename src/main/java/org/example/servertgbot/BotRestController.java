@@ -16,20 +16,20 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class BotRestController {
 
-    /*@PostMapping("/callback/update")
+    @PostMapping("/callback/update")
     public BotApiMethod<?> receiveUpdate(@RequestBody Update update) {
         SendMessage message = new SendMessage();
         message.setChatId(update.getMessage().getChatId().toString());
         message.setText("Извините, бот сейчас в ремонте");
         return message;
-    }*/
+    }
 
-    @PostMapping("/callback")
+    /*@PostMapping("/callback")
     public String post(@RequestBody String update) {
         return "Метод POST!";
     }
     @GetMapping("/")
     public String get() {
         return "Метод GET!";
-    }
+    }*/
 }

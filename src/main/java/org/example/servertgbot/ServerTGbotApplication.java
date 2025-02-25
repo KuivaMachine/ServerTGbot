@@ -16,7 +16,7 @@ public class ServerTGbotApplication {
         Dotenv dotenv = Dotenv.configure().load();
         dotenv.entries().forEach(entry -> System.setProperty(entry.getKey(), entry.getValue()));
         SpringApplication.run(ServerTGbotApplication.class, args);
-        log.info("ЭТО НОВАЯ ВЕРСИЯ");
+        log.info("ЭТО НОВАЯ ВЕРСИЯ2");
     }
 
 }
