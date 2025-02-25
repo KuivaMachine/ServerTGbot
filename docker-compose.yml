@@ -33,7 +33,7 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./data:/etc/traefik/data
+      - ./tls.yml:/etc/traefik/tls.yml
       - /home/kuiva/certs:/etc/traefik/certs
     labels:
       - "traefik.enable=true"
