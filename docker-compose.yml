@@ -12,7 +12,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.services.servertgbot.loadbalancer.server.port=${APP_PORT}"
-      - "traefik.http.routers.servertgbot.rule=Host(`${HOST_URL}`) && PathPrefix(`/callback`)"
+      - "traefik.http.routers.servertgbot.rule=Host(`${HOST_URL}`) && PathPrefix(`/`)"
       - "traefik.http.routers.servertgbot.entrypoints=websecure8"
       - "traefik.http.routers.servertgbot.tls=true"
     environment:
