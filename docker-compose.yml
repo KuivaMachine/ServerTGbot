@@ -67,6 +67,6 @@ services:
       - "--providers.docker.exposedbydefault=false"
       - "--providers.file.filename=/etc/traefik/tls.yml"
     restart: unless-stopped
-
-traefik-certs:
-  driver: local
+volumes:
+  traefik-certs:
+   driver: local
