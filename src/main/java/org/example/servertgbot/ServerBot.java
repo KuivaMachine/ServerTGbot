@@ -29,8 +29,7 @@ public class ServerBot extends TelegramWebhookBot {
 
     @Override
     public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
-       // return restController.receiveUpdate(update);
-        return null;
+        return restController.receiveUpdate(update);
     }
 
     @Override
