@@ -24,7 +24,7 @@ public class BotRestController {
         return message;
     }*/
 
-    @PostMapping("/")
+    @PostMapping("/callback")
     public String post(@RequestBody String update) {
         return "Метод POST!";
     }
