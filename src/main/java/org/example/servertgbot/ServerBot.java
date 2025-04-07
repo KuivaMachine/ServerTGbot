@@ -1,45 +1,59 @@
 package org.example.servertgbot;
 
+import lombok.extern.log4j.Log4j2;
 import org.example.configuration.TelegramBotConfig;
 import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.bots.TelegramWebhookBot;
-import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
-import org.telegram.telegrambots.meta.api.methods.updates.SetWebhook;
+import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardRemove;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
+@Log4j2
 @Component
-public class ServerBot extends TelegramWebhookBot {
-    BotRestController restController;
+public class ServerBot extends TelegramLongPollingBot {
+
     TelegramBotConfig config;
 
-    public ServerBot(BotRestController restController,TelegramBotConfig config) {
+    public ServerBot(TelegramBotConfig config) {
         super(config.getToken());
-        this.restController = restController;
         this.config = config;
         try {
-
-            SetWebhook setWebhook = SetWebhook.builder().url(config.getUrl()).build();
-            this.setWebhook(setWebhook);
-
+            TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
+            api.registerBot(this);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
     }
 
-    @Override
-    public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
-        return restController.receiveUpdate(update);
-
-    }
-
-    @Override
-    public String getBotPath() {
-        return "/update";
-    }
 
     @Override
     public String getBotUsername() {
-        return config.getName();
+        return "MustHaveCase_bot";
+    }
+
+    @Override
+    public void onUpdateReceived(Update update) {
+        if (update.hasMessage() && update.getMessage().hasText()) {
+            executeMessage(update.getMessage().getChatId());
+        }
+        if (update.hasCallbackQuery()) {
+           executeMessage(update.getCallbackQuery().getMessage().getChatId());
+        }
+    }
+
+
+    private void executeMessage(Long chatId){
+        SendMessage message = new SendMessage();
+        message.setChatId(chatId);
+        message.setText("Сейчас мне делают апргрейд \uD83D\uDCAA⚙\uFE0F, напишите чуть позже \uD83D\uDE43");
+        message.setReplyMarkup(new ReplyKeyboardRemove(true));
+        try {
+            execute(message);
+        } catch (TelegramApiException e) {
+            log.error(String.format("НЕ УДАЛОСЬ ОТПРАВИТЬ СООБЩЕНИЕ ПОЛЬЗОВАТЕЛЮ %s, ПО ПРИЧИНЕ - %s",chatId, e.getMessage()));
+        }
     }
 }

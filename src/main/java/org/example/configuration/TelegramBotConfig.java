@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Configuration;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class TelegramBotConfig {
     String token;
-    String name;
     String url;
 
 

@@ -1,4 +1,4 @@
-package org.example.servertgbot;
+/*package org.example.servertgbot;
 
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +24,12 @@ public class BotRestController {
         return message;
     }
 
-    /*@PostMapping("/callback")
+    *//*@PostMapping("/callback")
     public String post(@RequestBody String update) {
         return "Метод POST!";
     }
     @GetMapping("/")
     public String get() {
         return "Метод GET!";
-    }*/
-}
+    }*//*
+}*/
